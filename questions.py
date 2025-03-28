@@ -1,4 +1,12 @@
-question_data = [
-    { "text": "The loudest animal is the African Elephant", "answer":"False" },
-    { "text": "No piece of square dry paper can be folded in half more than 7 times", "answer":"False" }
-]
+import requests
+
+params = {
+    "amount": "10",
+    "type": "boolean"
+}
+
+request = requests.get(url="https://opentdb.com/api.php?", params= params)
+request.raise_for_status()
+data = request.json()
+
+question_data = data["results"]

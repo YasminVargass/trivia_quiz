@@ -1,6 +1,4 @@
-from question_model import Question
-from questions import question_data
-
+import html
 
 class QuizBrain():
     def __init__(self, q_list):
@@ -8,11 +6,11 @@ class QuizBrain():
         self.question_number = 0
         self.question_list = q_list
     
-    def next_question(self,):
-        
-        for numb_question in range(0, len(self.question_list)):
+    def next_question(self):
                 current_question = self.question_list[self.question_number]
-                user_answer = input(f"Q.{self.question_number + 1}: {current_question.text} (True/False): ")
+                self.question_number += 1
+                q_question = html.unescape(current_question.text)
+                user_answer = input(f"Q.{self.question_number}: {q_question} (True/False): ")
                 self.check_answer(user_answer, current_question.answer)
 
     def still_has_questions(self):
@@ -24,6 +22,6 @@ class QuizBrain():
               print("Correct")
          else:
               print("Incorrect")
-    
-
+         print(f"You current score is: {self.score}/{self.question_number}")
+         print(f"\n")
 
