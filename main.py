@@ -1,8 +1,7 @@
-import requests
-import json
 from question_model import Question
 from questions import question_data
 from quiz_brain import QuizBrain
+from ui import QuizInterface
 
 question_bank = []
 
@@ -15,6 +14,7 @@ def generate_question():
 
 generate_question()
 quiz = QuizBrain(question_bank)
+window = QuizInterface(quiz)
 
 while quiz.still_has_questions():
     quiz.next_question()
